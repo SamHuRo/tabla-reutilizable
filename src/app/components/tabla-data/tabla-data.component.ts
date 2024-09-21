@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Accion } from '../../models/tabla-columna';
 
 @Component({
   selector: 'app-tabla-data',
@@ -23,5 +24,11 @@ export class TablaDataComponent {
 
   @Input() set data(data: any){
     this.dataSource = data;
+  }
+
+  @Output() action: EventEmitter<Accion> = new EventEmitter();
+
+  onAction(accion: string, row?: any){
+    this.action.emit({ accion: accion, fila: row});
   }
 }
